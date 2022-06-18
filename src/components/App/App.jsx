@@ -104,7 +104,7 @@ export class App extends Component {
 
     return (
       <div className="App">
-        <Searchbar onSubmit={this.handleSubmit} />
+        <Searchbar onSubmit={this.handleSubmit} /> 
         {data.length > 0 && (
           <ImageGallery data={this.state.data} onClick={this.clickOnImage} />
         )}
