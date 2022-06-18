@@ -9,6 +9,8 @@ import { Button } from '../Button';
 import { Modal } from '../Modal';
 import { createPortal } from 'react-dom';
 
+const modalRoot = document.querySelector('#modal-root');
+
 export class App extends Component {
   state = {
     query: '',
@@ -132,7 +134,7 @@ export class App extends Component {
         {showModal && createPortal (
           <Modal onClose={this.toggleModal}>
             <img src={this.handleData().imageURL} alt={this.handleData().alt} />
-          </Modal>
+          </Modal>,modalRoot
         )}
       </div>
     );
