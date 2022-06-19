@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Watch } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { ServiceAPI } from '../API/API';
+import { ServiceAPI } from '../../service/API';
 import { ImageGallery } from '../ImageGallery';
 import s from '../ImageGallery/ImageGallery.module.css';
 import { Searchbar } from '../Searchbar';
