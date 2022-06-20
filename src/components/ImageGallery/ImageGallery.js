@@ -2,17 +2,16 @@ import PropTypes from 'prop-types';
 import { ImageGalleryItem } from './ImageGalleryItem';
 import s from './ImageGallery.module.css';
 
-export const ImageGallery = ({ data, onClick }) => {
+export const ImageGallery = ({ data }) => {
+
 
   return (
-    <>
-      <ul className={s.ImageGallery} onClick={onClick}>
+      <ul className={s.ImageGallery} >
         <ImageGalleryItem images={data} />
       </ul>
-    </>
   );
 };
 
 ImageGallery.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object.isRequired),
+  data: PropTypes.arrayOf(PropTypes.object.isRequired)
 };
