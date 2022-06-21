@@ -55,18 +55,9 @@ export class App extends Component {
       behavior: 'smooth',
     });
 
-    const newData = dataArray.map(data => {
-      const {
-        id,
-        largeImageURL: imageURL,
-        webformatURL: src,
-        tags: alt,
-      } = data;
-      return { id, imageURL, src, alt };
-    });
     return this.setState(({ data }) => {
       return {
-        data: [...data, ...newData],
+        data: [...data, ...dataArray],
         total: totalHits,
         status: 'resolved',
       };
@@ -87,12 +78,17 @@ export class App extends Component {
   };
 
   toggleModal = () => {
-    this.setState(({ showModal }) => ({ showModal: !showModal }));
+    this.setState(({ showModal }) => {
+      return {
+        showModal: false,
+        imgId: '',
+      };
+    });
   };
 
-  clickOnImage = id => {
-    this.setState({ imgId: id });
-    this.toggleModal();
+  clickOnImage = largeImageURL => {
+    this.setState({ imgId:largeImageURL, showModal: true, });
+    console.log('clickOnImage', largeImageURL);
   };
 
   handleData = () => {
@@ -106,7 +102,7 @@ export class App extends Component {
       <div className="App">
         <Searchbar onSubmit={this.handleSubmit} /> 
         {data.length > 0 && (
-          <ImageGallery data={this.state.data} onClick={this.clickOnImage} />
+          <ImageGallery data={data} onClick={this.clickOnImage} />
         )}
         {status === 'resolved' && data.length > 0 && data.length < total && (
           <>
@@ -133,8 +129,9 @@ export class App extends Component {
 
         {showModal && createPortal (
           <Modal onClose={this.toggleModal}>
-            <img src={this.handleData().imageURL} alt={this.handleData().alt} />
-          </Modal>,modalRoot
+            <img src={this.state.imgId} alt="" />
+          </Modal>,
+          modalRoot
         )}
       </div>
     );
